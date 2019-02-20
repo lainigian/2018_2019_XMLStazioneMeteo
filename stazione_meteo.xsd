@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:complexType name="tipoCoordinate">
+		<xs:sequence>
+			<xs:element name="longitudine">
+				<xs:simpleType>
+					<xs:restriction base="xs:float">
+						<xs:minInclusive value="-180"/>
+						<xs:maxInclusive value="180"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="latitudine">
+				<xs:simpleType>
+					<xs:restriction base="xs:float">
+						<xs:minInclusive value="-90"/>
+						<xs:maxInclusive value="90"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+				
+	<xs:complexType name="tipoRilevazione">
+		<xs:sequence>
+			<xs:element name="ora" type="xs:time"/>
+			<xs:element name="temperatura">
+				<xs:simpleType>
+					<xs:restriction base="xs:float">
+						<xs:minInclusive value="-50"/>
+						<xs:maxInclusive value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="umidita">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pressione">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="700"/>
+						<xs:maxInclusive value="1200"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="velocitaVento">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="500"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="direzioneVento">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="359"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="pioggia">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+						<xs:maxInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="stazione">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id_stazione" type="xs:string"/>
+				<xs:element name="coordinate" type="tipoCoordinate"/>
+				<xs:element name="data" type="xs:date"/>
+				<!--elenco rilevazioni-->
+				<xs:element name="rilevazione" type="tipoRilevazione" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+		
+
+</xs:schema>
